@@ -1,0 +1,25 @@
+{
+  "name": "type-knight",
+  "version": "0.0.1",
+  "description": "A type checker and linter for JavaScript that strives to maintain immutability in your application.",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sbrown17/type-knight.git"
+  },
+  "keywords": [
+    "type",
+    "checker",
+    "linter",
+    "immutability"
+  ],
+  "author": "Stu Brown",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/sbrown17/type-knight/issues"
+  },
+  "homepage": "https://github.com/sbrown17/type-knight#readme"
+}
