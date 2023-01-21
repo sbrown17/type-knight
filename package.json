@@ -2,17 +2,17 @@
   "name": "type-knight",
   "version": "0.0.1",
   "description": "A type checker and linter for JavaScript that strives to maintain immutability in your application.",
+  "type": "module",
   "main": "index.js",
   "scripts": {
-    "test": "test"
+    "start": "node index.js"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/sbrown17/type-knight.git"
   },
   "keywords": [
-    "type",
-    "checker",
+    "type-checker",
     "linter",
     "immutability"
   ],
