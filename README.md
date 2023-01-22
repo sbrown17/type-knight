@@ -4,3 +4,6 @@ Objectives:
     - variables are intialized with a type
     - variables are kept within the function or block that they are intialized in
     - variables are not mutated under any conditions
+
+Node.js version: 19.4.0
+npm version: 9.2.0
