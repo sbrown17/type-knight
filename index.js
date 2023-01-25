@@ -1,11 +1,7 @@
-import { readFile } from 'node:fs';
+import { readFileSync } from 'node:fs';
 console.log("Initializing type-knight...");
-// access js file
-var files = readFile('testFiles/test.js', (err, data) => {
-    if (err) throw err;
-    console.log(data.toString());
-});
-// turn js file into string
+// access js file and get back string
+const file = readFileSync('testFiles/test.js', 'utf-8');
 // count open "{" vs closed "}"
 // search for var, let, const
     // leave vars in for loops alone
