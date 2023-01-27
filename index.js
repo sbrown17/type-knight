@@ -3,8 +3,11 @@ console.log("Initializing type-knight...");
 // access js file and get back string
 const file = readFileSync('testFiles/test.js', 'utf-8');
 const fileArray = file.split('');
-function findVariable(fileArray) {
-    
+function findVariable(file, fileArray) {
+    // find instance of var
+    // get name of var
+    // check if it is mutated
+    const foundVar = file.indexOf("var");    
 }
 function findDepth(fileArray, fileIndex) {
     const bracketsOpened = bracketCounter(fileArray, '{');
