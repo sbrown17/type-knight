@@ -7,8 +7,8 @@ function findVariable(file, fileArray) {
     // find instance of var
     // get name of var
     // check if it is mutated
-    const foundVar = file.indexOf("var");
-    console.log(foundVar);
+    const foundVar = file.indexOf('var');
+    console.log('found var:', foundVar);
     if (foundVar >= 0)
         console.log(findDepth(fileArray, foundVar));
 }
@@ -21,11 +21,13 @@ function findDepth(fileArray, fileIndex) {
 }
 
 function bracketCounter(fileArray, targetChar) {
+    console.log('Counting ' + targetChar + ' brackets');
     let count = 0;
     for(let x in fileArray){
         if (x === targetChar)
             count++;
     }
+    console.log('Found ' + count + ' ' + targetChar + ' brackets');
     return count;
 }
 
