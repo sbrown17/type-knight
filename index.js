@@ -13,12 +13,12 @@ function findVariable(file, fileArray) {
     // get name of var
     // check if it is mutated
     const foundVarIndex = file.indexOf('var');
-    if (!foundVarIndex || foundVarIndex === -1){
-        console.log('Found 0 var\'s');
+    if (foundVarIndex < 0){
+        console.log('Found 0 var\'s ', foundVarIndex);
         return;
     }
 
-    console.log('found var: ', foundVarIndex);
+    console.log('found var at array index: ', foundVarIndex);
     console.log('finding block depth: ');
     const blockDepth = findDepth(fileArray, foundVarIndex);
     const lineNumber = findLine(fileArray, foundVarIndex);
