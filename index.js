@@ -9,25 +9,28 @@ console.log('file array: ', fileArray);
 
 function findVariable(file, fileArray) {
     // find instance of var
+    // IF VAR IS NULL OR UNDEFINED RETURN NOTHING
     // get name of var
     // check if it is mutated
     const foundVarIndex = file.indexOf('var');
     console.log('found var: ', foundVarIndex);
-    if (foundVarIndex >= 0)
-        console.log('Depth: ', findDepth(foundVarIndex));
+    console.log('finding block depth: ');
+    const blockDepth = findDepth(fileArray, foundVarIndex);
+    const lineNumber = findLine(fileArray, foundVarIndex);
+    console.log('var is on line: ', lineNumber);
 }
 
-function findDepth(foundVarIndex) {
-    const bracketsOpened = bracketCounter(foundVarIndex, '{');
+function findDepth(fileArray, foundVarIndex) {
+    const bracketsOpened = bracketCounter(fileArray, foundVarIndex, '{');
     console.log('Opened Brackets: ', bracketsOpened);
-    const bracketsClosed = bracketCounter(foundVarIndex, '}');
+    const bracketsClosed = bracketCounter(fileArray, foundVarIndex, '}');
     console.log('Closed Brackets: ', bracketsClosed);
     if (!bracketsOpened)
         return 0;     
     return bracketsOpened - bracketsClosed;
 }
 
-function bracketCounter(foundVarIndex, targetChar) {
+function bracketCounter(fileArray, foundVarIndex, targetChar) {
     console.log('Counting ' + targetChar + ' brackets');
     let count = 0;
     for (const x in fileArray) {
@@ -37,6 +40,16 @@ function bracketCounter(foundVarIndex, targetChar) {
     }
     console.log('Found ' + count + ' ' + targetChar + ' brackets');
     return count;
+}
+
+function findLine(fileArray, foundVarIndex) {
+    let lineNumber = 1;
+    for (const x in fileArray) {
+        if (x <= foundVarIndex &&
+            fileArray[x] === '\n')
+            lineNumber++;
+    }
+    return lineNumber;
 }
 
 findVariable(file, fileArray);
