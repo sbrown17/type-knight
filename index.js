@@ -2,7 +2,7 @@ import { readFileSync } from 'node:fs';
 
 console.log("Initializing type-knight...");
 // access js file and get back string
-const file = readFileSync('testFiles/test2.js', 'utf-8');
+const file = readFileSync('testFiles/test3.js', 'utf-8');
 console.log('test.js file: ', file);
 const fileArray = file.split('');
 console.log('file array: ', fileArray);
@@ -13,6 +13,11 @@ function findVariable(file, fileArray) {
     // get name of var
     // check if it is mutated
     const foundVarIndex = file.indexOf('var');
+    if (!foundVarIndex || foundVarIndex === -1){
+        console.log('Found 0 var\'s');
+        return;
+    }
+
     console.log('found var: ', foundVarIndex);
     console.log('finding block depth: ');
     const blockDepth = findDepth(fileArray, foundVarIndex);

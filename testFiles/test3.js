@@ -1,7 +1,7 @@
 let exampleVariable;
 
 for (let i; i < 10; i++) {
-    var a = 0;
+    let a = 0;
     exampleVariable += 1;
     console.log(exampleVariable);
 }
