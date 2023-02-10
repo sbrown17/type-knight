@@ -8,8 +8,6 @@ const fileArray = file.split('');
 console.log('file array: ', fileArray);
 
 function findVariable(file, fileArray) {
-    // find instance of var
-    // IF VAR IS NULL OR UNDEFINED RETURN NOTHING
     // get name of var
     // check if it is mutated
     const foundVarIndex = file.indexOf('var');
