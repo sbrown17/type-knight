@@ -21,6 +21,7 @@ function findVariable(file, fileArray) {
     const blockDepth = findDepth(fileArray, foundVarIndex);
     const lineNumber = findLine(fileArray, foundVarIndex);
     console.log('var is on line: ', lineNumber);
+    return foundVarIndex;
 }
 
 function findDepth(fileArray, foundVarIndex) {
@@ -53,6 +54,14 @@ function findLine(fileArray, foundVarIndex) {
             lineNumber++;
     }
     return lineNumber;
+}
+
+function getVariableAttributes(foundVarIndex){
+    const variableAttributes = {
+        name: variableName,
+        type: variableType,
+        mutated: variableMutated
+    }
 }
 
 findVariable(file, fileArray);
