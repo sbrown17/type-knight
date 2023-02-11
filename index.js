@@ -2,10 +2,10 @@ import { readFileSync } from 'node:fs';
 
 console.log("Initializing type-knight...");
 // access js file and get back string
-const file = readFileSync('testFiles/test3.js', 'utf-8');
+const file = readFileSync('testFiles/test2.js', 'utf-8');
 console.log('test.js file: ', file);
 const fileArray = file.split('');
-console.log('file array: ', fileArray);
+// console.log('file array: ', fileArray);
 
 function findVariable(file, fileArray) {
     // get name of var
@@ -21,6 +21,7 @@ function findVariable(file, fileArray) {
     const blockDepth = findDepth(fileArray, foundVarIndex);
     const lineNumber = findLine(fileArray, foundVarIndex);
     console.log('var is on line: ', lineNumber);
+    getVariableName(fileArray, foundVarIndex);
     return foundVarIndex;
 }
 
@@ -56,18 +57,26 @@ function findLine(fileArray, foundVarIndex) {
     return lineNumber;
 }
 
-function getVariableAttributes(foundVarIndex){
-    const variableAttributes = {
-        name: variableName,
+function getVariableAttributes(fileArray, foundVarIndex){
+    return variableAttributes = {
+        name: getVariableName(fileArray, foundVarIndex),
         type: variableType,
         mutated: variableMutated
-    }
+    };
+}
+
+function getVariableName(fileArray, foundVarIndex) {
+    const arrayStartingAtVar = fileArray.slice(foundVarIndex);
+    const variableNameIndex = arrayStartingAtVar.indexOf(' ') + foundVarIndex + 1;
+    const arrayStartingAtName = fileArray.slice(variableNameIndex);
+    const endVariableNameIndex = arrayStartingAtName.indexOf(' ');
+    return arrayStartingAtName.slice(0, endVariableNameIndex);
 }
 
 findVariable(file, fileArray);
 // count open "{" vs closed "}"
 // search for var, let, const
-    // leave vars in for loops alone
+    // warn that var in for loops have a different outcome than let for the counter
 // check for assigned type on initilization
     // check every subsequent call of variable to see if it is mutated??
     // check if type is still relevent
