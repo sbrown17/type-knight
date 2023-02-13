@@ -5,6 +5,7 @@ An ambitious type checker and linter for JavaScript to make sure code is as type
 - [ ] variables are intialized with a type
 - [ ] variables are kept within the function or block that they are intialized in
 - [ ] variables are not mutated under any conditions
+- [ ] give suggestions on how to solve these problems when encountered
 ---
 ## Node/NPM Versioning
 Node.js version: 19.4.0
