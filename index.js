@@ -2,41 +2,37 @@ import { readFileSync } from 'node:fs';
 
 console.log("Initializing type-knight...");
 // access js file and get back string
+// eventually this should loop through each .js file it can find in the directory
 const file = readFileSync('testFiles/test2.js', 'utf-8');
 console.log('test.js file: ', file);
 const fileArray = file.split('');
-// console.log('file array: ', fileArray);
 
 function findVariable(file, fileArray) {
-    // get name of var
-    // check if it is mutated
+    console.log('Searching for vars...');
     const foundVarIndex = file.indexOf('var');
     if (foundVarIndex < 0){
         console.log('Found 0 var\'s ', foundVarIndex);
         return;
     }
 
-    console.log('found var at array index: ', foundVarIndex);
-    console.log('finding block depth: ');
-    const blockDepth = findDepth(fileArray, foundVarIndex);
     const lineNumber = findLine(fileArray, foundVarIndex);
-    console.log('var is on line: ', lineNumber);
+    const blockDepth = findDepth(fileArray, foundVarIndex);
     getVariableName(fileArray, foundVarIndex);
     return foundVarIndex;
 }
 
 function findDepth(fileArray, foundVarIndex) {
+    console.log('Finding block depth...');
     const bracketsOpened = bracketCounter(fileArray, foundVarIndex, '{');
-    console.log('Opened Brackets: ', bracketsOpened);
     const bracketsClosed = bracketCounter(fileArray, foundVarIndex, '}');
-    console.log('Closed Brackets: ', bracketsClosed);
     if (!bracketsOpened)
         return 0;     
-    return bracketsOpened - bracketsClosed;
+    const blockDepth = bracketsOpened - bracketsClosed;
+    console.log('Var at depth of: ', blockDepth);
+    return blockDepth;
 }
 
 function bracketCounter(fileArray, foundVarIndex, targetChar) {
-    console.log('Counting ' + targetChar + ' brackets');
     let count = 0;
     for (const x in fileArray) {
         if (x <= foundVarIndex &&
@@ -48,12 +44,14 @@ function bracketCounter(fileArray, foundVarIndex, targetChar) {
 }
 
 function findLine(fileArray, foundVarIndex) {
+    
     let lineNumber = 1;
     for (const x in fileArray) {
         if (x <= foundVarIndex &&
             fileArray[x] === '\n')
             lineNumber++;
     }
+    console.log('Var on line: ', lineNumber);
     return lineNumber;
 }
 
