@@ -33,14 +33,9 @@ function findDepth(fileArray, foundVarIndex) {
 }
 
 function bracketCounter(fileArray, foundVarIndex, targetChar) {
-    let count = 0;
-    for (const x in fileArray) {
-        if (x <= foundVarIndex &&
-            fileArray[x] === targetChar)
-            count++;
-    }
-    console.log('Found ' + count + ' ' + targetChar + ' brackets');
-    return count;
+    const shortArray = fileArray.slice(0, foundVarIndex);
+    const targetCharArray = shortArray.filter(x => x === targetChar);
+    return targetCharArray.length;
 }
 
 function findLine(fileArray, foundVarIndex) {
