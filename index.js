@@ -28,7 +28,7 @@ function findDepth(fileArray, foundVarIndex) {
     if (!bracketsOpened)
         return 0;     
     const blockDepth = bracketsOpened - bracketsClosed;
-    console.log('Var at depth of: ', blockDepth);
+    console.log('var at depth of: ', blockDepth);
     return blockDepth;
 }
 
@@ -39,15 +39,10 @@ function bracketCounter(fileArray, foundVarIndex, targetChar) {
 }
 
 function findLine(fileArray, foundVarIndex) {
-    
-    let lineNumber = 1;
-    for (const x in fileArray) {
-        if (x <= foundVarIndex &&
-            fileArray[x] === '\n')
-            lineNumber++;
-    }
-    console.log('Var on line: ', lineNumber);
-    return lineNumber;
+    const shortArray = fileArray.slice(0, foundVarIndex);
+    const newLineCount = shortArray.filter(x => x === '\n').length + 1;
+    console.log('Found on line: ', newLineCount);
+    return newLineCount;
 }
 
 function getVariableAttributes(fileArray, foundVarIndex){
