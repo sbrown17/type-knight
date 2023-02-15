@@ -1,10 +1,10 @@
 import { readFileSync } from 'node:fs';
-
 console.log("Initializing type-knight...");
 // access js file and get back string
 // eventually this should loop through each .js file it can find in the directory
-const file = readFileSync('testFiles/test2.js', 'utf-8');
-console.log('test.js file: ', file);
+const fileName = 'test2.js';
+const file = readFileSync('testFiles/' + fileName, 'utf-8');
+console.log('test.js file:\n', file);
 const fileArray = file.split('');
 
 function findVariable(file, fileArray) {
