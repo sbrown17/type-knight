@@ -18,6 +18,7 @@ function findVariable(file, fileArray) {
     const lineNumber = findLine(fileArray, foundVarIndex);
     const blockDepth = findDepth(fileArray, foundVarIndex);
     getVariableName(fileArray, foundVarIndex);
+    getVariableType(fileArray, foundVarIndex);
     return foundVarIndex;
 }
 
@@ -48,8 +49,8 @@ function findLine(fileArray, foundVarIndex) {
 function getVariableAttributes(fileArray, foundVarIndex){
     return variableAttributes = {
         name: getVariableName(fileArray, foundVarIndex),
-        type: variableType,
-        mutated: variableMutated
+        type: getVariableType(fileArray, foundVarIndex),
+        mutated: variableHasBeenMutated(fileArray)
     };
 }
 
@@ -59,6 +60,19 @@ function getVariableName(fileArray, foundVarIndex) {
     const arrayStartingAtName = fileArray.slice(variableNameIndex);
     const endVariableNameIndex = arrayStartingAtName.indexOf(' ');
     return arrayStartingAtName.slice(0, endVariableNameIndex);
+}
+
+function getVariableType(fileArray, foundVarIndex) {
+    // seems like variables cant be assigned on the same line without ;
+    const arrayStartingAtVar = fileArray.slice(foundVarIndex);
+    const assignmentOperatorIndex = arrayStartingAtVar.indexOf('=');
+    const nextNewline = arrayStartingAtVar.indexOf('\n');
+    const nextSemicolon = arrayStartingAtVar.indexOf(';');
+    // endAssignment gets the index of the end of the assignment, we now have the end for the target array
+    const endAssignment = nextNewline > nextSemicolon ? nextNewline : nextSemicolon;
+    // take index of = to index of endAssignment, trim whitespace and you're left with the assignee
+    const assignee = arrayStartingAtVar.slice(assignmentOperatorIndex + 1, endAssignment).join('').trim();
+    console.log('the assignee is: ', assignee);
 }
 
 findVariable(file, fileArray);
