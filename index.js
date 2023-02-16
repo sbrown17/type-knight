@@ -73,6 +73,13 @@ function getVariableType(fileArray, foundVarIndex) {
     // take index of = to index of endAssignment, trim whitespace and you're left with the assignee
     const assignee = arrayStartingAtVar.slice(assignmentOperatorIndex + 1, endAssignment).join('').trim();
     console.log('the assignee is: ', assignee);
+    if (assignee.includes('"') || assignee.includes("'")) {
+        console.log('it\'s a string!');
+        return 'string';
+    } else if (assignee.includes('.') || parseInt(assignee) / 1 === parseInt(assignee)) {
+        console.log('idk it\'s a number of some sort');
+        return 'number';
+    }
 }
 
 findVariable(file, fileArray);
