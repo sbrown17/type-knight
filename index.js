@@ -73,6 +73,8 @@ function getVariableType(fileArray, foundVarIndex) {
     // take index of = to index of endAssignment, trim whitespace and you're left with the assignee
     const assignee = arrayStartingAtVar.slice(assignmentOperatorIndex + 1, endAssignment).join('').trim();
     console.log('the assignee is: ', assignee);
+    
+    // I'm not sure this will ever be 100% guaranteed so we will have to give a way to ignore suggestions
     if (assignee.includes('"') || assignee.includes("'")) {
         console.log('it\'s a string!');
         return 'string';

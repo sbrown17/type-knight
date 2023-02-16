@@ -2,9 +2,10 @@
 An ambitious type checker and linter for JavaScript to make sure code is as type safe and immutable as possible.
 ---
 ## Objectives:
-- [ ] variables are intialized with a type
-- [ ] variables are kept within the function or block that they are intialized in
-- [ ] variables are not mutated under any conditions
+- [ ] warn when variables are intialized without a type
+- [ ] warn when variables aren't kept within the function or block that they are intialized in
+- [ ] warn when variables are mutated
+	- [ ] give suggestions on when they can be kept const
 - [ ] give suggestions on how to solve these problems when encountered
 ---
 ## Node/NPM Versioning
