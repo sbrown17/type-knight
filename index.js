@@ -75,12 +75,16 @@ function getVariableType(fileArray, foundVarIndex) {
     console.log('the assignee is: ', assignee);
     
     // I'm not sure this will ever be 100% guaranteed so we will have to give a way to ignore suggestions
+    // check for quotes, double quotes, curly brackets or square brackets, whichever comes first is what the type should be
     if (assignee.includes('"') || assignee.includes("'")) {
         console.log('it\'s a string!');
         return 'string';
     } else if (assignee.includes('.') || parseInt(assignee) / 1 === parseInt(assignee)) {
         console.log('idk it\'s a number of some sort');
         return 'number';
+    } else if (assignee === 'true' || assignee === 'false') {
+        console.log('It\'s a bool.')
+        return 'bool';
     }
 }
 
