@@ -2,7 +2,7 @@ import { readFileSync } from 'node:fs';
 console.log("Initializing type-knight...");
 // access js file and get back string
 // eventually this should loop through each .js file it can find in the directory
-const fileName = 'test2.js';
+const fileName = 'test4.js';
 const file = readFileSync('testFiles/' + fileName, 'utf-8');
 console.log('test.js file:\n', file);
 const fileArray = file.split('');
@@ -76,16 +76,25 @@ function getVariableType(fileArray, foundVarIndex) {
     
     // I'm not sure this will ever be 100% guaranteed so we will have to give a way to ignore suggestions
     // check for quotes, double quotes, curly brackets or square brackets, whichever comes first is what the type should be
-    if (assignee.includes('"') || assignee.includes("'")) {
-        console.log('it\'s a string!');
-        return 'string';
-    } else if (assignee.includes('.') || parseInt(assignee) / 1 === parseInt(assignee)) {
-        console.log('idk it\'s a number of some sort');
-        return 'number';
-    } else if (assignee === 'true' || assignee === 'false') {
-        console.log('It\'s a bool.')
-        return 'bool';
+    
+    const assigneeArray = Array.from(assignee);
+    console.log(assigneeArray);
+    const firstAssigneeChar = assigneeArray[0];
+    console.log(firstAssigneeChar);
+    if (firstAssigneeChar === '{') {
+        console.log('Object', assignee);
+        return 'Object';
+    } else if (firstAssigneeChar === '[') {
+        console.log('Array', assignee);        
+        return 'Array';
+    } else if (firstAssigneeChar === '"' || firstAssigneeChar === '\''){
+        console.log('String', assignee); 
+        return 'String'; 
+    } else if (Number(firstAssigneeChar) * 0 === 0) {
+        console.log('Number', assignee);
+        return 'Number';
     }
+
 }
 
 findVariable(file, fileArray);
