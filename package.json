@@ -5,7 +5,8 @@
   "type": "module",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js"
+    "start": "node index.js",
+    "test": "jest"
   },
   "repository": {
     "type": "git",
@@ -21,5 +22,8 @@
   "bugs": {
     "url": "https://github.com/sbrown17/type-knight/issues"
   },
-  "homepage": "https://github.com/sbrown17/type-knight#readme"
+  "homepage": "https://github.com/sbrown17/type-knight#readme",
+  "devDependencies": {
+    "jest": "^29.4.3"
+  }
 }

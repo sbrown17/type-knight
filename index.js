@@ -105,3 +105,5 @@ findVariable(file, fileArray);
     // check every subsequent call of variable to see if it is mutated??
     // check if type is still relevent
     // check if proper operations are being applied to it
+
+module.exports = getVariableName;
