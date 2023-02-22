@@ -62,7 +62,10 @@ function getVariableName(fileArray, foundVarIndex) {
     return arrayStartingAtName.slice(0, endVariableNameIndex);
 }
 
-function getVariableType(fileArray, foundVarIndex) {
+// need function getVariableValue
+// then pass just that to getVariableType
+
+function getVariableValue(fileArray, foundVarIndex) {
     // seems like variables cant be assigned on the same line without ;
     const arrayStartingAtVar = fileArray.slice(foundVarIndex);
     const assignmentOperatorIndex = arrayStartingAtVar.indexOf('=');
@@ -74,9 +77,11 @@ function getVariableType(fileArray, foundVarIndex) {
     const assignee = arrayStartingAtVar.slice(assignmentOperatorIndex + 1, endAssignment).join('').trim();
     console.log('the assignee is: ', assignee);
     
-    // I'm not sure this will ever be 100% guaranteed so we will have to give a way to ignore suggestions
-    // check for quotes, double quotes, curly brackets or square brackets, whichever comes first is what the type should be
-    
+    return assignee;
+}
+function getVariableType(fileArray, foundVarIndex) {
+    // I'm not sure this will ever be 100% guaranteed so we will have to give a way to ignore the suggestions this gives
+    const assignee = getVariableValue(fileArray, foundVarIndex);
     const assigneeArray = Array.from(assignee);
     console.log(assigneeArray);
     const firstAssigneeChar = assigneeArray[0];
