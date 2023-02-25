@@ -1,4 +1,6 @@
 // this needs to be a function name instead of index and export it in index.js too
-const findName = require('./findName');
+const getVariableName = require('./getVariableName');
 
-test();
+test('returns name of variable', () => {
+    expect(getVariableName('var testName = "this";')).toBe('testName');
+});

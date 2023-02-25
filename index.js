@@ -111,4 +111,5 @@ findVariable(file, fileArray);
     // check if type is still relevent
     // check if proper operations are being applied to it
 
-module.exports = getVariableName;
+// module.exports = getVariableName;
+export default getVariableName;
