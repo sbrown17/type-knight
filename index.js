@@ -27,7 +27,7 @@ function findDepth(fileArray, foundVarIndex) {
     const bracketsOpened = bracketCounter(fileArray, foundVarIndex, '{');
     const bracketsClosed = bracketCounter(fileArray, foundVarIndex, '}');
     if (!bracketsOpened)
-        return 0;     
+        return 0;
     const blockDepth = bracketsOpened - bracketsClosed;
     console.log('var at depth of: ', blockDepth);
     return blockDepth;
@@ -47,8 +47,7 @@ function findLine(fileArray, foundVarIndex) {
 }
 
 function getVariableAttributes(fileArray, foundVarIndex){
-    return variableAttributes = {
-        name: getVariableName(fileArray, foundVarIndex),
+    return variableAttributes = { name: getVariableName(fileArray, foundVarIndex),
         type: getVariableType(fileArray, foundVarIndex),
         mutated: variableHasBeenMutated(fileArray)
     };
@@ -90,7 +89,7 @@ function getVariableType(fileArray, foundVarIndex) {
         console.log('Object', assignee);
         return 'Object';
     } else if (firstAssigneeChar === '[') {
-        console.log('Array', assignee);        
+        console.log('Array', assignee);
         return 'Array';
     } else if (firstAssigneeChar === '"' || firstAssigneeChar === '\''){
         console.log('String', assignee); 
@@ -108,8 +107,10 @@ findVariable(file, fileArray);
     // warn that var in for loops have a different outcome than let for the counter
 // check for assigned type on initilization
     // check every subsequent call of variable to see if it is mutated??
-    // check if type is still relevent
-    // check if proper operations are being applied to it
+    // check if type is still relevent check if proper operations are being applied to it
 
 // module.exports = getVariableName;
-export default getVariableName;
+export default {
+    getVariableName: getVariableName,
+    getVariableValue: getVariableValue
+};
